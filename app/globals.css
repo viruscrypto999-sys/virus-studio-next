@@ -1,0 +1,219 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,
+[data-theme='dark'] {
+ --font-sans: 'Inter Tight', system-ui, -apple-system, sans-serif;
+ --font-serif: 'Instrument Serif', Georgia, serif;
+ /* Palette - Dark Default (Graphite Void & Ice-Silver) */
+ --bg-void: #06070A;
+ --bg-surface: #0D0F13;
+ --bg-raised: #14171C;
+ --bg-glass: rgba(13, 15, 19, 0.72);
+ --bg-glass-heavy: rgba(20, 23, 28, 0.84);
+ --border-hairline: rgba(255, 255, 255, 0.07);
+ --border-highlight: rgba(255, 255, 255, 0.14);
+ --text-primary: #ECEEF1;
+ --text-muted: #8A9099;
+ --accent-ice: #BFD4E6;
+ --accent-ice-soft: rgba(191, 212, 230, 0.12);
+ --accent-ice-border: rgba(191, 212, 230, 0.34);
+ --shadow-ambient: 0 24px 60px -16px rgba(0, 0, 0, 0.65);
+
+ /* Radii Tokens (10 / 16 / 24 / 36) */
+ --radius-10: 10px;
+ --radius-16: 16px;
+ --radius-24: 24px;
+ --radius-36: 36px;
+
+ /* Motion Tokens */
+ --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+ --ease-soft-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+ --dur-micro: 180ms;
+ --dur-ui: 420ms;
+ --dur-scene: 1000ms;
+}
+
+[data-theme='light'] {
+ /* Palette - Warm Paper & Ink */
+ --bg-void: #F4F3EF;
+ --bg-surface: #ECEAE4;
+ --bg-raised: #E2DFD7;
+ --bg-glass: rgba(244, 243, 239, 0.78);
+ --bg-glass-heavy: rgba(236, 234, 228, 0.90);
+ --border-hairline: rgba(11, 12, 14, 0.08);
+ --border-highlight: rgba(11, 12, 14, 0.16);
+ --text-primary: #0B0C0E;
+ --text-muted: #5A5F66;
+ --accent-ice: #2B4C66;
+ --accent-ice-soft: rgba(43, 76, 102, 0.09);
+ --accent-ice-border: rgba(43, 76, 102, 0.28);
+ --shadow-ambient: 0 20px 48px -16px rgba(11, 12, 14, 0.09);
+}
+
+@layer base {
+ * {
+   border-color: var(--border-hairline);
+   box-sizing: border-box;
+ }
+
+ html {
+   background-color: var(--bg-void);
+   color: var(--text-primary);
+   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01';
+   text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   scroll-behavior: auto;
+ }
+
+ body {
+   background-color: var(--bg-void);
+   color: var(--text-primary);
+   overflow-x: hidden;
+   min-height: 100dvh;
+   selection-background-color: var(--accent-ice);
+ }
+
+ ::selection {
+   background-color: var(--accent-ice-soft);
+   color: var(--text-primary);
+ }
+
+ :focus-visible {
+   outline: 1.5px solid var(--accent-ice);
+   outline-offset: 3px;
+ }
+}
+
+/* 3% Static Film Grain Overlay - single composited layer, zero repaint cost */
+.film-grain-overlay {
+ position: fixed;
+ inset: 0;
+ pointer-events: none;
+ z-index: 45;
+ opacity: 0.03;
+ background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Strictly capped glass surface (max 14px blur for 60fps mobile guarantee) */
+.spatial-glass {
+ background: var(--bg-glass);
+ backdrop-filter: blur(14px);
+ -webkit-backdrop-filter: blur(14px);
+ border: 1px solid var(--border-hairline);
+ box-shadow: inset 0 1px 0 0 var(--border-highlight);
+}
+
+/* Non-blurred architectural card with top-edge inner highlight & radial luminance */
+.spatial-card {
+ position: relative;
+ background: var(--bg-surface);
+ border: 1px solid var(--border-hairline);
+ box-shadow:
+   inset 0 1px 0 0 var(--border-highlight),
+   var(--shadow-ambient);
+ transition:
+   transform var(--dur-ui) var(--ease-expo-out),
+   opacity var(--dur-ui) var(--ease-expo-out),
+   border-color var(--dur-micro) ease;
+}
+
+.spatial-card:hover {
+ border-color: var(--border-highlight);
+}
+
+/* Fluid Typography & Editorial Rules */
+.display-hero {
+ font-size: clamp(2.85rem, 9.8vw, 8.75rem);
+ line-height: 0.94;
+ letter-spacing: -0.04em;
+}
+
+.display-section {
+ font-size: clamp(2rem, 4.8vw, 4.25rem);
+ line-height: 1.02;
+ letter-spacing: -0.035em;
+}
+
+.tabular-nums {
+ font-variant-numeric: tabular-nums;
+}
+
+/* Off-screen rendering optimization for long below-the-fold sections */
+.cv-auto {
+ content-visibility: auto;
+ contain-intrinsic-size: 1px 720px;
+}
+
+/* Underline draw micro-interaction using transform scaleX only */
+.underline-draw {
+ position: relative;
+ display: inline-block;
+}
+
+.underline-draw::after {
+ content: '';
+ position: absolute;
+ left: 0;
+ bottom: -2px;
+ width: 100%;
+ height: 1px;
+ background-color: var(--accent-ice);
+ transform: scaleX(0);
+ transform-origin: right center;
+ transition: transform var(--dur-ui) var(--ease-expo-out);
+}
+
+.underline-draw:hover::after,
+.underline-draw:focus-visible::after {
+ transform: scaleX(1);
+ transform-origin: left center;
+}
+
+/* Button Text-Roll Micro-Interaction (Transform Only) */
+.btn-roll {
+ position: relative;
+ overflow: hidden;
+}
+
+.btn-roll-inner {
+ display: block;
+ transition: transform var(--dur-ui) var(--ease-expo-out);
+}
+
+.btn-roll:hover .btn-roll-inner {
+ transform: translateY(-105%);
+}
+
+.btn-roll-clone {
+ position: absolute;
+ inset: 0;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ transform: translateY(105%);
+ transition: transform var(--dur-ui) var(--ease-expo-out);
+}
+
+.btn-roll:hover .btn-roll-clone {
+ transform: translateY(0%);
+}
+
+/* Reduced Motion Strict Override */
+@media (prefers-reduced-motion: reduce) {
+ *,
+ *::before,
+ *::after {
+   animation-duration: 0.01ms !important;
+   animation-iteration-count: 1 !important;
+   transition-duration: 120ms !important;
+   scroll-behavior: auto !important;
+ }
+
+ .btn-roll:hover .btn-roll-inner,
+ .btn-roll:hover .btn-roll-clone {
+   transform: none !important;
+ }
+}
