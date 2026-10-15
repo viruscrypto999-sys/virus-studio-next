@@ -18,7 +18,7 @@ const APKS: Apk[] = [
     size: '7.2 MB',
     tag: 'RECOMMENDED',
     recommended: true,
-    url: 'https://raw.githubusercontent.com/viruscrypto999-sys/virus-arrows-pro-apk/main/releases/Virus-Arrows-Pro-FIXED-v2.apk',
+    url: 'https://raw.githubusercontent.com/viruscrypto999-sys/virus-arrows-pro-apk/main/releases/Virus-Arrows-Pro.apk',
   },
 ];
 
