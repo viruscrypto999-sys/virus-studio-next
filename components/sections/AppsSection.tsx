@@ -18,25 +18,7 @@ const APKS: Apk[] = [
     size: '7.2 MB',
     tag: 'RECOMMENDED',
     recommended: true,
-    url: 'https://raw.githubusercontent.com/viruscrypto999-sys/virus-arrows-pro-apk/main/releases/Virus-Arrows-Pro-ARGONFIX.apk',
-  },
-  {
-    name: 'Virus Arrows Pro — Latest',
-    desc: 'Latest build with layout fixes and performance tuning.',
-    size: '7.3 MB',
-    url: 'https://raw.githubusercontent.com/viruscrypto999-sys/virus-arrows-pro-apk/main/releases/Virus-Arrows-Pro-LATEST.apk',
-  },
-  {
-    name: 'Virus Arrows Pro — Clean',
-    desc: 'Clean build. No export banner, pure gameplay.',
-    size: '7.3 MB',
-    url: 'https://raw.githubusercontent.com/viruscrypto999-sys/virus-arrows-pro-apk/main/releases/Virus-Arrows-Pro-CLEAN.apk',
-  },
-  {
-    name: 'Virus Arrow Escape',
-    desc: 'A different beast — the arrow escape edition.',
-    size: '7.2 MB',
-    url: 'https://raw.githubusercontent.com/viruscrypto999-sys/virus-arrows-pro-apk/main/releases/Virus-Arrow-Escape.apk',
+    url: 'https://raw.githubusercontent.com/viruscrypto999-sys/virus-arrows-pro-apk/main/releases/Virus-Arrows-Pro-FIXED-v2.apk',
   },
 ];
 
