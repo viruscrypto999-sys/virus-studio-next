@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { Badge, Button, Card } from '@/components/ui/Primitives';
 
 export default function GlobalError({
   error,
@@ -12,20 +11,20 @@ export default function GlobalError({
 }) {
   return (
     <div className="min-h-[80dvh] flex items-center justify-center px-4 sm:px-8 pt-24">
-      <Card radius="r24" className="max-w-xl w-full p-8 sm:p-10 text-center space-y-5">
-        <Badge tone="accent">RUNTIME FAULT ISOLATED</Badge>
-        <h2 className="text-2xl sm:text-3xl font-medium text-text">
-          Telemetry stream interrupted
+      <div className="spatial-glass rounded-r24 max-w-xl w-full p-8 sm:p-10 text-center space-y-5">
+        <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-accent">
+          // Engine fault
+        </p>
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-text">
+          Something blew a gasket
         </h2>
         <p className="text-xs sm:text-sm text-muted font-mono">
-          {error.message || 'An unexpected state transition occurred in this view.'}
+          {error?.message || 'Unexpected runtime error'}
         </p>
-        <div className="pt-2 flex justify-center gap-3">
-          <Button variant="primary" onClick={reset} rollText>
-            Re-Initialize View
-          </Button>
-        </div>
-      </Card>
+        <button onClick={reset} className="btn-red rounded-r16 px-8 py-3 text-xs uppercase">
+          Restart engine
+        </button>
+      </div>
     </div>
   );
 }

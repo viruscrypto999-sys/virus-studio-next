@@ -1,18 +1,16 @@
 import React from 'react';
 import { HeroSection } from '@/components/hero/HeroSection';
-import { HowItWorksStory } from '@/components/home/HowItWorksStory';
-import { TrendingAppsBento } from '@/components/home/TrendingAppsBento';
-import { NewsHorizontalRail } from '@/components/home/NewsHorizontalRail';
-import { SpotlightAndNewsletter } from '@/components/home/SpotlightAndNewsletter';
+import { AppsSection } from '@/components/sections/AppsSection';
+import { AboutSection } from '@/components/sections/AboutSection';
+import { Footer } from '@/components/layout/Footer';
 
 export default function HomePage() {
   return (
-    <>
+    <div id="top">
       <HeroSection />
-      <HowItWorksStory />
-      <TrendingAppsBento />
-      <NewsHorizontalRail />
-      <SpotlightAndNewsletter />
-    </>
+      <AppsSection />
+      <AboutSection />
+      <Footer />
+    </div>
   );
 }
