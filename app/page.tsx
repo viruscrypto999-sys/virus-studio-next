@@ -1,6 +1,7 @@
 import React from 'react';
 import { HeroSection } from '@/components/hero/HeroSection';
-import { AppsSection } from '@/components/sections/AppsSection';
+// APK garage hidden until fixed build is ready (owner order Oct 15)
+// import { AppsSection } from '@/components/sections/AppsSection';
 import { AboutSection } from '@/components/sections/AboutSection';
 import { Footer } from '@/components/layout/Footer';
 
@@ -8,7 +9,7 @@ export default function HomePage() {
   return (
     <div id="top">
       <HeroSection />
-      <AppsSection />
+      {/* <AppsSection /> */}
       <AboutSection />
       <Footer />
     </div>
