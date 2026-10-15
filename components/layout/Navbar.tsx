@@ -22,14 +22,18 @@ export function Navbar() {
     >
       <nav className="mx-auto w-full max-w-[1440px] px-4 sm:px-8 h-16 sm:h-20 flex items-center justify-between">
         <a href="#top" className="flex items-center gap-3 group">
-          <span
-            className="w-9 h-9 rounded-xl flex items-center justify-center font-black text-white text-lg"
-            style={{
-              background: 'linear-gradient(135deg, #ff1e1e, #8a0400)',
-              boxShadow: '0 0 20px rgba(225,6,0,0.5)',
-            }}
-          >
-            V
+          <span className="relative w-9 h-9 flex items-center justify-center">
+            <span
+              className="absolute inline-flex h-full w-full rounded-full opacity-40 animate-ping"
+              style={{ background: '#ff1e1e' }}
+            />
+            <span
+              className="relative inline-flex rounded-full h-4 w-4"
+              style={{
+                background: 'linear-gradient(135deg, #ff1e1e, #8a0400)',
+                boxShadow: '0 0 20px rgba(225,6,0,0.8)',
+              }}
+            />
           </span>
           <span className="font-black tracking-tight text-lg uppercase">
             Virus<span className="text-accent">Studio</span>
